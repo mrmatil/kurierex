@@ -12,7 +12,7 @@ public class DeliveryCostCalculator {
 
     @GetMapping(path = "/cost")
     public DeliveryCostModel getCost() {
-        model = new DeliveryCostModel(15.0);
+        model = new DeliveryCostModel(12.0,15.0);
         return model;
     }
 
