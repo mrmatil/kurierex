@@ -1,12 +1,24 @@
 package com.example.kurierex.controllers;
 
+import com.example.kurierex.models.DatabaseUserModel;
 import com.example.kurierex.models.DeliveryCostModel;
+import com.example.kurierex.models.UserModel;
+import com.example.kurierex.services.DatabaseService;
+import com.google.api.client.json.Json;
+import com.google.gson.Gson;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/delivery", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DeliveryCostCalculator {
+
+    DatabaseService ds = null;
+
+    public DeliveryCostCalculator() {
+        ds = new DatabaseService();
+        ds.run();
+    }
 
     @GetMapping(path = "/cost")
     @ResponseBody
@@ -26,6 +38,12 @@ public class DeliveryCostCalculator {
             return e;
         }
         return null;
+    }
+
+    @PutMapping(path = "/userData")
+    public void sendUserDataToFirebase(@RequestBody DatabaseUserModel databaseUserModel) {
+
+        ds.addRequest(databaseUserModel);
     }
 
     public DeliveryCostModel getPackageCost(double dimensionalWeight) throws Exception {
