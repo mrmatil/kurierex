@@ -1,5 +1,6 @@
 package com.example.kurierex.controllers;
 
+import com.example.kurierex.models.CompatibilityModel;
 import com.example.kurierex.models.DatabaseUserModel;
 import com.example.kurierex.models.DeliveryCostModel;
 import com.example.kurierex.models.UserModel;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/delivery", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DeliveryCostCalculator {
 
@@ -41,7 +43,28 @@ public class DeliveryCostCalculator {
     }
 
     @PutMapping(path = "/userData")
-    public void sendUserDataToFirebase(@RequestBody DatabaseUserModel databaseUserModel) {
+    public void sendUserDataToFirebase(@RequestBody CompatibilityModel compatibilityModel) {
+
+        DatabaseUserModel databaseUserModel = new DatabaseUserModel(
+                compatibilityModel.getLength(),
+                compatibilityModel.getHeight(),
+                compatibilityModel.getWidth(),
+                new UserModel(
+                        compatibilityModel.getSenderName(),
+                        compatibilityModel.getSenderSurname(),
+                        compatibilityModel.getSenderStreet(),
+                        compatibilityModel.getSenderApartment(),
+                        compatibilityModel.getSenderCity(),
+                        compatibilityModel.getSenderPhoneNumber()
+                ),
+                new UserModel(
+                        compatibilityModel.getReceiverName(),
+                        compatibilityModel.getReceiverSurname(),
+                        compatibilityModel.getReceiverStreet(),
+                        compatibilityModel.getReceiverApartment(),
+                        compatibilityModel.getReceiverCity(),
+                        compatibilityModel.getReceiverPhoneNumber()
+                ));
 
         ds.addRequest(databaseUserModel);
     }
