@@ -46,7 +46,7 @@ https://github.com/mrmatil/kurierex
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-For usage examples please refer to the [Live Documentation in API](https://joinitwebsite.azurewebsites.net/swagger-ui/)
+For usage examples please refer to the [Live Documentation in API](http://localhost:8080/swagger-ui.html)
 
 ## Frontend
 * Github: https://github.com/sobusz/KurierexAngular
