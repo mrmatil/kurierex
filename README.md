@@ -10,7 +10,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [WWW](#www)
 * [Frontend](#frontend)
 
 <!-- ABOUT THE PROJECT -->
